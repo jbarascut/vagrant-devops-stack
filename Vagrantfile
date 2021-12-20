@@ -15,6 +15,11 @@ Vagrant.configure("2") do |config|
     ubuntu2004.vm.box_version = "202112.19.0"
   end
 
+  config.vm.define "ubuntu1804" do |ubuntu1804|
+    ubuntu1804.vm.box = "bento/ubuntu-18.04"
+    ubuntu1804.vm.box_version = "202112.19.0"
+  end
+
   config.vm.provision "file", source: "terraform", destination: "terraform"
   config.vm.provision "shell", path: "script.sh", privileged: false
 end
