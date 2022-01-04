@@ -12,7 +12,6 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 docker run hello-world
@@ -33,6 +32,9 @@ sudo curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/rele
 sudo chmod +x /usr/local/bin/argocd
 #k9s
 wget -c https://github.com/derailed/k9s/releases/download/v0.25.15/k9s_Linux_x86_64.tar.gz
-tar xvf /home/vagrant/k9s_Linux_x86_64.tar.gz k9s
+tar xvf k9s_Linux_x86_64.tar.gz k9s
 sudo mv k9s /usr/local/bin/k9s
 rm -rf k9s*
+#iptables
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j DNAT --to 172.17.0.9:443
+sudo iptables -A FORWARD -p tcp -d 172.17.0.9 --dport 443 -j ACCEPT
