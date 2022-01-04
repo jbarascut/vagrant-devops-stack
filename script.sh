@@ -34,7 +34,8 @@ sudo chmod +x /usr/local/bin/argocd
 wget -c https://github.com/derailed/k9s/releases/download/v0.25.15/k9s_Linux_x86_64.tar.gz
 tar xvf k9s_Linux_x86_64.tar.gz k9s
 sudo mv k9s /usr/local/bin/k9s
-rm -rf k9s*
 #iptables
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j DNAT --to 172.17.0.9:443
 sudo iptables -A FORWARD -p tcp -d 172.17.0.9 --dport 443 -j ACCEPT
+#inotify
+echo 1024 | sudo tee /proc/sys/fs/inotify/max_user_instances

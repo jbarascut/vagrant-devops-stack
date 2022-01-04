@@ -5,6 +5,8 @@ Vagrant.configure("2") do |config|
       ["argocd.apps.my-cluster.172-17-0-9.nip.io",
        "alertmanager.apps.my-cluster.172-17-0-9.nip.io", 
        "grafana.apps.my-cluster.172-17-0-9.nip.io",
+       "keycloak.apps.my-cluster.172-17-0-9.nip.io",
+       "keycloak.apps.172-17-0-9.nip.io",
        "prometheus.apps.my-cluster.172-17-0-9.nip.io",
        "minio.apps.my-cluster.172-17-0-9.nip.io",
        "thanos-bucketweb.apps.172-17-0-9.nip.io",
@@ -13,7 +15,7 @@ Vagrant.configure("2") do |config|
       ubuntu2110.hostsupdater.remove_on_suspend = true
     end
     ubuntu2110.vm.box = "generic/ubuntu2110"
-    ubuntu2110.vm.network "forwarded_port", guest: 443, host: 8443
+    ubuntu2110.vm.network "forwarded_port", guest: 443, host: 8443, host_ip: "127.0.0.1"
     ubuntu2110.vm.network "forwarded_port", guest: 80, host: 8080
 
     

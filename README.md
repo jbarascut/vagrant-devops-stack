@@ -32,7 +32,7 @@ export KUBECONFIG=kubeconfig.yaml
 k9s
 ```
 
-# Kubernetes Services
+## Kubernetes Services
 
 https://argocd.apps.my-cluster.172-17-0-9.nip.io:8443
 https://alertmanager.apps.my-cluster.172-17-0-9.nip.io:8443
